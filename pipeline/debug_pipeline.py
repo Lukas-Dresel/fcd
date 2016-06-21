@@ -37,7 +37,9 @@ def main(argv):
     module_bounds.append(len(lines))
     
     modules = [lines[module_bounds[i] : module_bounds[i + 1]] for i in range(len(module_bounds) - 1)]
-    names = ["{:03d}_post_{}.ll".format(i, 'init' if i == 0 else stages[i - 1]) for i in range(len(modules))]
+    names = ["{:03d}_post_{}.ll".format(i + 1, stage) for i, stage in enumerate(stages)]
+    names.insert(0, '{:03d}_post_{}.ll'.format(0, 'preopt'))
+    
     
     for i in range(len(modules)):
         with open(names[i], 'w') as outfile:
