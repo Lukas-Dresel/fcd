@@ -18,7 +18,9 @@ def main(argv):
         stages = f.readlines()
 
     stages = [ s.strip() for s in stages ]
-    pipeline = ' print-module '.join(stages)
+    pipeline = 'print-module '
+    pipeline += ' print-module '.join(stages)
+    pipeline += ' print-module'
     
     fcd_args = argv[3:]
     fcd_args.append('-opt-pipeline={}'.format(pipeline))
